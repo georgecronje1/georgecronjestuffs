@@ -1,0 +1,91 @@
+<asp:GridView ID="GridViewGalleryImage" runat="server" AllowPaging="False" AutoGenerateColumns="false" DataKeyNames="image_id" ShowFooter="true"
+			EmptyDataText="No parts are currently linked with this."
+			onrowcancelingedit="GridViewGalleryImage_RowCancelingEdit"
+			onrowediting="GridViewGalleryImage_RowEditing"
+			onrowdatabound="GridViewGalleryImage_RowDataBound"
+			onrowdeleting="GridViewGalleryImage_RowDeleting"
+			onrowupdating="GridViewGalleryImage_RowUpdating"
+			onrowcommand="GridViewGalleryImage_RowCommand">
+	<Columns>
+		<asp:TemplateField HeaderText="Delete Edit">
+			<ItemTemplate>
+				<asp:LinkButton ID="delete" runat="server" CommandName="Delete" Text="Delete"></asp:LinkButton>
+				<asp:LinkButton ID="edit" runat="server" CommandName="Edit" CommandArgument='<%# Container.DataItemIndex %>' Text="Edit"></asp:LinkButton>
+			</ItemTemplate>
+			<EditItemTemplate>
+				<asp:LinkButton ID="update" runat="server" CommandName="Update" Text="Update"></asp:LinkButton>
+				<asp:LinkButton ID="cancel" runat="server" CommandName="Cancel" CommandArgument='<%# Container.DataItemIndex %>' Text="Cancel"></asp:LinkButton>
+			</EditItemTemplate>
+			<FooterTemplate>
+				<asp:Button ID="delete_all" runat="server" CommandName="Delete_All" Text="Delete All" />
+				<asp:Button ID="delete_all_confirm" runat="server" CommandName="Delete_All_Confirm" Text="Confirm" Visible="false" />
+				<asp:Button ID="cancel_delete_all" runat="server" CommandName="Cancel_Delete_All" Text="Cancel" Visible="false" />
+			</FooterTemplate>
+		</asp:TemplateField>
+		<asp:BoundField DataField="image_id" HeaderText="Image ID" SortExpression="image_id" ReadOnly="true" />
+		<asp:BoundField DataField="path" HeaderText="Image" SortExpression="path" ItemStyle-HorizontalAlign="Center" ReadOnly="true" />
+		<asp:BoundField DataField="sequence" HeaderText="Sequence" SortExpression="sequence" ItemStyle-HorizontalAlign="Center" />
+		<asp:ButtonField ButtonType="Button" CommandName="set_modified" HeaderText="Set Modified" Text="Set Modified" />
+	</Columns>
+</asp:GridView>
+<asp:GridView ID="category_gridview" runat="server" ShowFooter="true" AutoGenerateColumns="false"
+			AutoGenerateEditButton="false"
+			OnRowEditing="category_gridview_RowEditing"
+			OnRowCancelingEdit="category_gridview_RowCancelingEdit"
+			OnRowUpdating="category_gridview_RowUpdating"
+			OnRowCommand="category_gridview_RowCommand"
+			EmptyDataText="No Categories that match the filter criteria were found.">
+	<Columns>
+		<asp:TemplateField HeaderText="Edit" ShowHeader="false">
+		<ItemTemplate>
+			<asp:LinkButton ID="btnedit" runat="server" CommandName="Edit" Text="Edit" ></asp:LinkButton>
+		</ItemTemplate>
+		<EditItemTemplate>
+			<asp:LinkButton ID="btnupdate" runat="server" CommandName="Update" Text="Update" ></asp:LinkButton>
+			<asp:LinkButton ID="btncancel" runat="server" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
+		</EditItemTemplate>
+		<FooterTemplate>
+			<asp:Button ID="add_cat" runat="server" Text="Add" CommandName="Insert" />
+			<asp:Button ID="add_cat_cancel" runat="server" CommandName="Cancel_Insert" Text="Cancel" Visible="false" />
+		</FooterTemplate>
+		</asp:TemplateField>
+		<asp:TemplateField HeaderText="Category">
+			<ItemTemplate>
+				<asp:Label ID="category_lbl" runat="server" Text='<%# Bind("Category") %>'></asp:Label>
+			</ItemTemplate>
+			<EditItemTemplate>
+				<asp:TextBox ID="category_tb" runat="server" Text='<%# Bind("Category") %>'></asp:TextBox>
+			</EditItemTemplate>
+			<FooterTemplate>
+			<asp:TextBox ID="add_category" runat="server" Visible="false"></asp:TextBox>
+			</FooterTemplate>
+		</asp:TemplateField>
+		<asp:TemplateField HeaderText="Code">
+			<ItemTemplate>
+				<asp:Label ID="cat_codelbl" runat="server" Text='<%# Bind("Category_Code") %>'></asp:Label>
+			</ItemTemplate>
+			<FooterTemplate>
+			<asp:TextBox ID="add_cat_code" runat="server" MaxLength="3" Visible="false"></asp:TextBox>
+			</FooterTemplate>
+		</asp:TemplateField>
+		<asp:TemplateField HeaderText="Sequence">
+			<ItemTemplate>
+				<asp:Label ID="seq_lbl" runat="server" Text='<%# Bind("sequence") %>'></asp:Label>
+			</ItemTemplate>
+			<EditItemTemplate>
+				<asp:TextBox ID="seq_tb" runat="server" Text='<%# Bind("sequence") %>' AutoPostBack="false"></asp:TextBox>
+			</EditItemTemplate>
+			<FooterTemplate>
+			<asp:TextBox ID="add_seq" runat="server" Visible="false"></asp:TextBox>
+			</FooterTemplate>
+		</asp:TemplateField>
+		<asp:TemplateField HeaderText="Deleted">
+			<ItemTemplate>
+				<asp:CheckBox ID="cat_deleted_display" runat="server" Enabled="false" Checked='<%# Eval("deleted") %>' />
+			</ItemTemplate>
+			<EditItemTemplate>
+				<asp:CheckBox ID="cat_deleted_edit" runat="server" Enabled="true" Checked='<%# Eval("deleted") %>' />
+			</EditItemTemplate>
+		</asp:TemplateField>
+	</Columns>
+</asp:GridView>
