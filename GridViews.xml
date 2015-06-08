@@ -38,10 +38,10 @@
 	<Columns>
 		<asp:TemplateField HeaderText="Edit" ShowHeader="false">
 		<ItemTemplate>
-			<asp:LinkButton ID="btnedit" runat="server" CommandName="Edit" Text="Edit" ></asp:LinkButton>
+			<asp:LinkButton ID="btnedit" runat="server" CommandName="Edit" CommandArgument='<%# Container.DataItemIndex %>' Text="Edit" ></asp:LinkButton>
 		</ItemTemplate>
 		<EditItemTemplate>
-			<asp:LinkButton ID="btnupdate" runat="server" CommandName="Update" Text="Update" ></asp:LinkButton>
+			<asp:LinkButton ID="btnupdate" runat="server" CommandName="Update" CommandArgument='<%# Container.DataItemIndex %>' Text="Update" ></asp:LinkButton>
 			<asp:LinkButton ID="btncancel" runat="server" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
 		</EditItemTemplate>
 		<FooterTemplate>
